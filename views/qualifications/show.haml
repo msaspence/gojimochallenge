@@ -2,7 +2,10 @@
 %h3 Subjects
 .subjects
   %h4
-    - @qualification.subjects.each do |s|
-      %span.subject.label-large.label.label-default{ style: "background-color: #{s.color}" }
-        = s.title
-      &nbsp;
+    - if @qualification.subjects.size > 0
+      - @qualification.subjects.each do |s|
+        %span.subject.label-large.label.label-default{ style: "background-color: #{s.color}" }
+          = s.title
+        &nbsp;
+    - else
+      There are no subjects listed for this qualification
