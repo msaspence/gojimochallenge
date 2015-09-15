@@ -27,6 +27,13 @@ describe Gojimo::Qualification do
       expect(subject).to eq [{'a' => 'b'}]
     end
 
+    it "caches its value on the class for subsequent calls" do
+      stub_get = stub_request(:get, "http://api.gojimo.net/api/v4/qualifications").and_return(body: '[{"a":"b"}]')
+      Gojimo::Qualification.data
+      Gojimo::Qualification.data
+      expect(stub_get).to have_been_requested
+    end
+
   end
 
   describe '.all' do
