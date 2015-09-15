@@ -5,7 +5,7 @@ module Gojimo
   class Qualification
 
     attr_accessor :id
-    attr_accessor :title
+    attr_accessor :name
 
 
     def self.data
@@ -20,7 +20,7 @@ module Gojimo
 
     def initialize options
       @id = options['id']
-      @title = options['title']
+      @name = options['name']
     end
 
   end

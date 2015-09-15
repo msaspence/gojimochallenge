@@ -40,15 +40,15 @@ describe Gojimo::Qualification do
     subject do
       Gojimo::Qualification.new({
         'id' => 'my_id',
-        'title' => 'A title'
+        'name' => 'A name'
       })
     end
 
     it "sets the id" do
       expect(subject.id).to eq 'my_id'
     end
-    it "sets the title" do
-      expect(subject.title).to eq 'A title'
+    it "sets the name" do
+      expect(subject.name).to eq 'A name'
     end
   end
 
