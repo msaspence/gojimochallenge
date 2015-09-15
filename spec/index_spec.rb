@@ -13,8 +13,8 @@ describe '/index', type: :feature do
   end
 
   it { is_expected.to have_content "Qualifications" }
-  it { is_expected.to have_content "Qualification 1" }
-  it { is_expected.to have_content "Qualification 2" }
-  it { is_expected.to have_content "Qualification 3" }
+  it { is_expected.to have_link "Qualification 1", '/qualification?id=1' }
+  it { is_expected.to have_link "Qualification 2", '/qualification?id=2' }
+  it { is_expected.to have_link "Qualification 3", '/qualification?id=3' }
 
 end

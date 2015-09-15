@@ -3,4 +3,6 @@
 .qualifications
   - @qualifications.each do |q|
     .qualification
-      %h3.name= q.name
+      %h3.name
+        %a{ href: "/qualification?id=#{q.id}" }
+          = q.name

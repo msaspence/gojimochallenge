@@ -1,0 +1,5 @@
+%h2= @qualification.name
+%h3 Subjects
+.subjects
+  - @qualification.subjects.each do |s|
+    .subject= s.title
