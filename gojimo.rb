@@ -1,4 +1,5 @@
 require 'Haml'
+require 'pry'
 require 'sinatra'
 
 get '/' do
