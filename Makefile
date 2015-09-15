@@ -1,2 +1,2 @@
 server:
-	ruby gojimo.rb
+	shotgun gojimo.rb
