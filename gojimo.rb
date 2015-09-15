@@ -5,7 +5,7 @@ require 'json'
 require 'net/http'
 require 'pry'
 require 'sinatra'
-
+require 'uri'
 
 require 'gojimo/qualification'
 require 'gojimo/subject'

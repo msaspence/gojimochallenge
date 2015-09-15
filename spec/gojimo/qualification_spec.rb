@@ -17,21 +17,26 @@ describe Gojimo::Qualification do
     end
 
     it "get data from api.gojimo.net/api/v4/qualifications" do
-      stub_get = stub_request(:get, "http://api.gojimo.net/api/v4/qualifications").and_return(body: '[{"a":"b"}]')
+      stub_get = stub_request(:get, "https://api.gojimo.net/api/v4/qualifications").and_return(body: '[{"a":"b"}]')
       subject
       expect(stub_get).to have_been_requested
     end
 
     it "parses it as JSON" do
-      stub_request(:get, "api.gojimo.net/api/v4/qualifications").and_return(body: '[{"a":"b"}]')
+      stub_request(:get, "https://api.gojimo.net/api/v4/qualifications").and_return(body: '[{"a":"b"}]')
       expect(subject).to eq [{'a' => 'b'}]
     end
 
-    it "caches its value on the class for subsequent calls" do
-      stub_get = stub_request(:get, "http://api.gojimo.net/api/v4/qualifications").and_return(body: '[{"a":"b"}]')
-      Gojimo::Qualification.data
-      Gojimo::Qualification.data
-      expect(stub_get).to have_been_requested
+    context "when the server returns 304" do
+      it "uses the cache" do
+        stub_request(:get, "https://api.gojimo.net/api/v4/qualifications").and_return(body: '[{"a":"b"}]')
+        Gojimo::Qualification.data
+        stub_get = stub_request(:get, "https://api.gojimo.net/api/v4/qualifications")
+          .with(headers: { 'If-Modified-Since' => /[A-Za-z]{3}, [0-9]{1,2} [A-Za-z]{3} [0-9]{4} [0-9]{2}\:[0-9]{2}\:[0-9]{2} (\-|\+)?[0-9]{4}/ })
+          .and_return(status: 304)
+        expect(Gojimo::Qualification.data).to eq [{'a' => 'b'}]
+        expect(stub_get).to have_been_requested
+      end
     end
 
   end
