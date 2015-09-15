@@ -1,4 +1,4 @@
-To setup run: `bundle`
+To setup run: `bundle install`
 
 To run the site: `make server`
 
