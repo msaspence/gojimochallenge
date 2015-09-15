@@ -1,5 +1,6 @@
+require 'Haml'
 require 'sinatra'
 
 get '/' do
-  "Hello World!"
+  haml :'qualifications/index'
 end
