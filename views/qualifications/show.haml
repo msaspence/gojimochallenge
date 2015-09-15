@@ -1,5 +1,8 @@
 %h2= @qualification.name
 %h3 Subjects
 .subjects
-  - @qualification.subjects.each do |s|
-    .subject= s.title
+  %h4
+    - @qualification.subjects.each do |s|
+      %span.subject.label-large.label.label-default{ style: "background-color: #{s.color}" }
+        = s.title
+      &nbsp;

@@ -8,16 +8,7 @@ describe Gojimo::Subject do
       Gojimo::Subject.new({
         'id' => 'my_id',
         'title' => 'A title',
-        'subject' => [
-          {
-            'id' => 'first_subject',
-            'title' => "The first subject"
-          },
-          {
-            'id' => 'second_subject',
-            'title' => "The second subject"
-          },
-        ]
+        'colour' => '#f00'
       })
     end
 
@@ -27,6 +18,10 @@ describe Gojimo::Subject do
 
     it "sets the title" do
       expect(subject.title).to eq 'A title'
+    end
+
+    it "sets the color" do
+      expect(subject.color).to eq '#f00'
     end
 
   end
